@@ -7,6 +7,10 @@ Backend: ExpressJS
 
 Database: PostgreSQL
 
+`npm install` to install dependencies first!
+
+`npm install --only=dev` to install development depedencies
+
 **Backend script commands:**
 
 `npm run dev` to run api in development mode
