@@ -1,0 +1,54 @@
+import sql from "../db/db.ts";
+import { v7 as uuidv7 } from "uuid";
+
+async function isUsernameExist(username: string) {
+  try {
+    const user = await sql`
+      select username from users where username = ${username}
+    `;
+
+    return user.length;
+  } catch (err) {
+    console.error("isUsernameExist error");
+  }
+}
+
+async function findUserByUserId(userId: string) {
+  try {
+    const user = await sql`
+      select user_uuid, username, password, role from users where user_uuid = ${userId}
+    `;
+
+    return user[0];
+  } catch (err) {
+    console.error("findUserByUserId error");
+  }
+}
+
+async function findUserByUsername(username: string) {
+  try {
+    const user = await sql`
+      select user_uuid, username, password, role from users where username = ${username}
+    `;
+
+    return user[0];
+  } catch (err) {
+    console.error("findUserByUsername error");
+  }
+}
+
+async function registerUser(username: string, password: string, role: string) {
+  const uuid = uuidv7();
+  try {
+    const user = await sql`
+      insert into users (user_uuid, username, password, role)
+      values (${uuid}, ${username}, ${password}, ${role})
+    `;
+
+    return user;
+  } catch (err) {
+    console.error("registerUser Error");
+  }
+}
+
+export { isUsernameExist, findUserByUserId, findUserByUsername, registerUser };
