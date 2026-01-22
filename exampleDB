@@ -1,0 +1,80 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict ULJAxxbOtgb2W0kndsvIViQKzLikwycfaRSW0weSqANgwobPcGZkI8a7CkMfqd2
+
+-- Dumped from database version 16.10 (Ubuntu 16.10-0ubuntu0.24.04.1)
+-- Dumped by pg_dump version 16.10 (Ubuntu 16.10-0ubuntu0.24.04.1)
+
+-- Started on 2026-01-23 03:17:28 +07
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 215 (class 1259 OID 25739)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    user_uuid uuid NOT NULL,
+    username text NOT NULL,
+    password text NOT NULL,
+    role text
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 3431 (class 0 OID 25739)
+-- Dependencies: 215
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (user_uuid, username, password, role) FROM stdin;
+019bd6d6-1848-74cb-addb-7641a4f004d1	teststudent	$2b$11$cWKeVb3CUqHny577kVJNH.vA3QJZKC3zpqYP4k8K5bajXOVsSLWhG	student
+019bd6da-5fb0-710f-bfd2-b282368abcc7	testtutor	$2b$11$cWKeVb3CUqHny577kVJNH.vA3QJZKC3zpqYP4k8K5bajXOVsSLWhG	tutor
+019bd6e2-92e2-754c-8abb-9124dc8cac7a	testadmin	$2b$11$cWKeVb3CUqHny577kVJNH.vA3QJZKC3zpqYP4k8K5bajXOVsSLWhG	admin
+\.
+
+
+--
+-- TOC entry 3285 (class 2606 OID 25747)
+-- Name: users username; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT username UNIQUE (username);
+
+
+--
+-- TOC entry 3287 (class 2606 OID 25745)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (user_uuid);
+
+
+-- Completed on 2026-01-23 03:17:28 +07
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict ULJAxxbOtgb2W0kndsvIViQKzLikwycfaRSW0weSqANgwobPcGZkI8a7CkMfqd2
+
